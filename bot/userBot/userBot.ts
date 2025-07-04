@@ -1,6 +1,9 @@
 import { Telegraf, Scenes, session } from 'telegraf';
+import dotenv from 'dotenv';
 import type { BotContext } from '../../types/BotContext';
 import { prisma } from '../../db';
+
+dotenv.config();
 
 import { registerScene } from './scenes/registerScene';
 import { paymentScene } from './scenes/paymentScene';
