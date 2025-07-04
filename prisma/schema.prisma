@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  telegramId  BigInt       @unique
+  name        String?
+  phone       String?
+  region      String?
+  hasAccess   Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  payments    Payment[]
+  calculations Calculation[]
+}
+
+model Payment {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  status       String   
+  proofPhotoId String?  
+  createdAt    DateTime @default(now())
+}
+
+model Calculation {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  user            User     @relation(fields: [userId], references: [id])
+  educationType   String
+  faculty         String
+  mainScore       Int
+  chemistryScore  Int
+  biologyScore    Int
+  probability     Int
+  region          String?
+  createdAt       DateTime @default(now())
+}
+
+model Specialty {
+  id                Int     @id @default(autoincrement())
+  name              String
+  budgetThreshold   Int
+  contractThreshold Int
+  historicalData    Json
+}
