@@ -196,6 +196,9 @@ export const registerScene = new Scenes.WizardScene<Scenes.WizardContext & { wiz
               name: ctx.wizard.state.name,
               phone: ctx.wizard.state.phone,
               region: ctx.wizard.state.region,
+              mainScore: ctx.wizard.state.mainScore,
+              chemistryScore: ctx.wizard.state.chemistryScore,
+              biologyScore: ctx.wizard.state.biologyScore,
               hasAccess: false
             }
           }
